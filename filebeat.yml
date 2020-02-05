@@ -1,20 +1,11 @@
-filebeat.prospectors:
-- paths:
-    - /apache-logs/access.log
-  tags:
-    - testenv
-    - apache_access
-  input_type: log
-  document_type: apache_access
-  fields_under_root: true
+filebeat.inputs:
 
 - paths:
-    - /apache-logs/error.log
+    - /sample-logs/request-sample.log
   tags:
-    - testenv
-    - apache_error
+    - request-sample
   input_type: log
-  document_type: apache_error
+  document_type: request-sample
   fields_under_root: true
 
 output.kafka:
