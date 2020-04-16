@@ -33,8 +33,8 @@ services:
     image: docker.elastic.co/beats/filebeat:7.5.2
     command: filebeat -e -strict.perms=false
     volumes:
-      - "//c/Users/Cast/megalog-try-1/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro"
-      - "//c/Users/Cast/megalog-try-1/sample-logs:/sample-logs"
+      - "//c/Users/Cast/megalog-try-2/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro"
+      - "//c/Users/Cast/megalog-try-2/sample-logs:/sample-logs"
     links:
       - kafka1
     depends_on:
@@ -54,14 +54,14 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - "//c/Users/Cast/megalog-try-1/esdata:/usr/share/elasticsearch/data"
+      - "//c/Users/Cast/megalog-try-2/esdata:/usr/share/elasticsearch/data"
     ports:
       - "9200:9200"
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.5.2
     volumes:
-      - "//c/Users/Cast/megalog-try-1/kibana.yml:/usr/share/kibana/config/kibana.yml"
+      - "//c/Users/Cast/megalog-try-2/kibana.yml:/usr/share/kibana/config/kibana.yml"
     restart: always
     environment:
     - SERVER_NAME=kibana.localhost
@@ -76,7 +76,7 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:7.5.2
     volumes:
-      - "//c/Users/Cast/megalog-try-1/logstash.conf:/config-dir/logstash.conf"
+      - "//c/Users/Cast/megalog-try-2/logstash.conf:/config-dir/logstash.conf"
     restart: always
     command: logstash -f /config-dir/logstash.conf
     ports:
